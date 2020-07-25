@@ -35,7 +35,7 @@ int main(void)
 { 
     char value[257];
     unsigned int input;
-	unsigned int value_len;
+    unsigned int value_len;
     struct node *head=NULL;
     int status;
 
@@ -44,8 +44,8 @@ int main(void)
         printf("\n 1. add entry \n 2. find entry\n 3. Del Entry\n 4. exit\n Enter your choice:");
         scanf("%d",&input);
 
-		if(input>=4|| input <1)
-			break;
+        if(input>=4|| input <1)
+            break;
 
         printf("\nEnter the value:");
         scanf("%s",value);
@@ -254,7 +254,7 @@ void del_all_entry(struct node **head)
 
         free(temp->value);
         free(temp);
-		break;
+        break;
     }
     else if(prev == NULL && temp->next != NULL)
     {
