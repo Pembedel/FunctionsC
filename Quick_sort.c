@@ -49,6 +49,9 @@ int main(int argc, char **argv)
     int i;
     int num, num_elem;
 
+    if (argc !=2)
+        exit(-1);
+
     num_elem = atoi(argv[1]);
 
     array = malloc(num_elem*sizeof(int));
