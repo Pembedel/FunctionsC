@@ -12,10 +12,11 @@ int compare (const void * ca, const void * cb)
 int main()
 {
      int numnam, j;
-     char *names[] = {"Ellin","Alexa","Eliza","Celiza"};
+     char *names[] = {"Ram","Shyam","Pizza","Water","Array"};
      numnam = sizeof(names)/sizeof(char *);
      qsort(names, numnam, sizeof(char *), compare);
      for (j = 0 ; j < numnam; j++)
          printf("%s \n", names[j]);
+     
 return 0;
 }
