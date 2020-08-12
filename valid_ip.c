@@ -4,7 +4,7 @@
 *
 *  run with command line args <executable> <ip_addr>:<portno>
 *
-*	Author:Kapil
+*    Author:Kapil
 */
 
 
@@ -23,7 +23,7 @@
 
 int validate_ip_addr(char *ip_addr)
 {
-	char *split_str;
+    char *split_str;
     int count = 0;
     int temp_ip=0;
     int status = 0;
@@ -33,19 +33,19 @@ int validate_ip_addr(char *ip_addr)
 
     while (split_str != NULL)
     {
-    	status = FAIL;
+        status = FAIL;
 
-    	printf("\nsplit_str:%s", split_str);
+        printf("\nsplit_str:%s", split_str);
 
-    	if(count > 3)
-    		break;
+        if(count > 3)
+            break;
 
-    	temp_ip = atoi(split_str);
+        temp_ip = atoi(split_str);
 
-    	if(temp_ip>0 && temp_ip < 256)
-    	{
-    		status = SUCCESS;
-    	}
+        if(temp_ip>0 && temp_ip < 256)
+        {
+            status = SUCCESS;
+        }
 
         split_str = strtok (NULL, ".");
         count++;
@@ -54,9 +54,9 @@ int validate_ip_addr(char *ip_addr)
     printf("\ncount value:%d",count);
 
     if (count < 4)
-    	status = FAIL;
+        status = FAIL;
 
-	return status;
+    return status;
 }
 
 
@@ -70,34 +70,34 @@ int main(int argc, char** argv)
 
     if(argc !=2)
     {
-    	printf("Invalid entry");
-    	exit(-1);
-	}
+        printf("Invalid entry");
+        exit(-1);
+    }
    /*Separating ipaddr and portno from <ipaddr>:<portno> format*/    
     split_str = strtok(argv[1],":");
 
     while (split_str != NULL)
     {
-    	printf("\nsplit_str:%s", split_str);
-    	switch (count)
-    	{
-    		case IPADDR:
-    			ip_addr = malloc(strlen(split_str)+1);
-				strncpy(ip_addr,split_str,strlen(split_str)+1);
-        		ip_addr[strlen(split_str)]='\0';
-    		break;
+        printf("\nsplit_str:%s", split_str);
+        switch (count)
+        {
+            case IPADDR:
+                ip_addr = malloc(strlen(split_str)+1);
+                strncpy(ip_addr,split_str,strlen(split_str)+1);
+                ip_addr[strlen(split_str)]='\0';
+            break;
 
-    		case PORTNUM:
-    			port_num = malloc(strlen(split_str)+1);
-		        strncpy(port_num,split_str,strlen(split_str)+1);
-        		port_num[strlen(split_str)]='\0';
-    		break;
+            case PORTNUM:
+                port_num = malloc(strlen(split_str)+1);
+                strncpy(port_num,split_str,strlen(split_str)+1);
+                port_num[strlen(split_str)]='\0';
+            break;
 
-    		default:
-    		break;
-    	}
+            default:
+            break;
+        }
         split_str = strtok (NULL, ":");
-		count++; 
+        count++; 
     }
 
     /* Validation of ip address and port number TODO: IP address is valid*/
@@ -107,23 +107,23 @@ int main(int argc, char** argv)
     }
     else
     {
-    	printf("\nipaddr:%s, port num:%s",ip_addr, port_num);
+        printf("\nipaddr:%s, port num:%s",ip_addr, port_num);
 
-    	portno = atoi(port_num);
-    	
-    	if (portno < MIN_PORTNO || portno > MAX_PORTNO)
-    	{
-    		printf("\nportnumber invalid");
-    		exit(-1);
-    	}
-    	if(validate_ip_addr(ip_addr) == 0)
-    	{
-    		printf("\nip address valid");
-    	}
-    	else
-    	{
-    		printf("\nip_address invalid");
-    	}
+        portno = atoi(port_num);
+        
+        if (portno < MIN_PORTNO || portno > MAX_PORTNO)
+        {
+            printf("\nportnumber invalid");
+            exit(-1);
+        }
+        if(validate_ip_addr(ip_addr) == 0)
+        {
+            printf("\nip address valid");
+        }
+        else
+        {
+            printf("\nip_address invalid");
+        }
     }
 
     free(ip_addr);
